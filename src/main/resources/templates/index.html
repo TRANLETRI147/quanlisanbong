@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sân Bóng - Đặt sân trực tuyến</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="/" class="logo">⚽ SânBóng</a>
+
+    <nav>
+        <a href="#trang-chu">Trang chủ</a>
+        <a href="#san-bong">Sân bóng</a>
+        <a href="#gioi-thieu">Giới thiệu</a>
+        <a href="#lien-he">Liên hệ</a>
+    </nav>
+
+    <div class="nav-buttons">
+            <a href="#" class="btn btn-outline">Đăng nhập</a>
+            <a href="#" class="btn btn-primary">Đăng ký</a>
+        </div>
+    </header>
+
+<body>
+    <h1>Danh Sách Sân Bóng</h1>
+
+    <table border="1" style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên Sân</th>
+                <th>Loại Sân</th>
+                <th>Giá Thắc (VNĐ)</th>
+                <th>Trạng Thái</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="san : ${danhSachSan}">
+                <td th:text="${san.id}">1</td>
+                <td th:text="${san.tenSan}">Sân A1</td>
+                <td th:text="${san.loaiSan}">Sân 5</td>
+                <td th:text="${san.giaThue}">200000</td>
+                <td th:text="${san.trangThai}">Trống</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>login">Đăng nhập</a>
+        <a href="#" class="register">Đăng ký</a>
+    </div>
+</header>
+
+<main>
+    <section class="hero" id="trang-chu">
+        <div class="hero-content">
+            <span class="tagline">⚽ NỀN TẢNG ĐẶT SÂN BÓNG</span>
+
+            <h1>Tìm sân bóng phù hợp,<br>
+                <span>Đặt sân dễ dàng!</span>
+            </h1>
+
+            <p>
+                Tìm kiếm sân bóng gần bạn, tham khảo giá và
+                lựa chọn khung giờ phù hợp chỉ trong vài bước.
+            </p>
+
+            <a href="#san-bong" class="hero-button">Khám phá sân bóng →</a>
+        </div>
+
+        <div class="hero-ball">⚽</div>
+        <div class="hero-label">Đam mê sân cỏ – Kết nối đam mê</div>
+    </section>
+
+    <section class="search-section">
+        <h2>Tìm sân bóng của bạn</h2>
+        <p class="section-desc">Lựa chọn sân bóng phù hợp với nhu cầu</p>
+
+        <div class="search-box">
+            <div class="search-field">
+                <label for="location">Khu vực</label>
+                <input id="location" type="text"
+                       placeholder="Nhập quận hoặc khu vực">
+            </div>
+
+            <div class="search-field">
+                <label for="field-type">Loại sân</label>
+                <select id="field-type">
+                    <option value="">Tất cả loại sân</option>
+                    <option>Sân 5 người</option>
+                    <option>Sân 7 người</option>
+                    <option>Sân 11 người</option>
+                </select>
+            </div>
+
+            <div class="search-field">
+                <label for="booking-date">Ngày đá</label>
+                <input id="booking-date" type="date">
+            </div>
+
+            <button type="button" class="search-button"
+                    onclick="searchFields()">Tìm sân</button>
+        </div>
+
+        <p id="search-message" class="search-message"></p>
+    </section>
+
+    <section class="fields-section" id="san-bong">
+        <div class="section-heading">
+            <div>
+                <h2>Sân bóng nổi bật</h2>
+                <p class="section-desc">Một số sân bóng tham khảo</p>
+            </div>
+            <span class="field-count">3 sân bóng</span>
+        </div>
+
+        <div class="field-list">
+            <article class="field-card"
+                     data-location="thu duc"
+                     data-type="Sân 5 người">
+                <div class="field-image image-one">
+                    <span>SÂN 5 NGƯỜI</span>
+                    <strong>⚽</strong>
+                </div>
+                <div class="field-info">
+                    <h3>Sân bóng Thanh Niên</h3>
+                    <p>📍 Khu vực Thủ Đức</p>
+                    <p>🕒 06:00 – 22:00</p>
+                    <div class="field-bottom">
+                        <strong>300.000đ<span>/giờ</span></strong>
+                        <button type="button"
+                                onclick="showBooking('Sân bóng Thanh Niên')">
+                            Xem sân
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="field-card"
+                     data-location="binh thanh"
+                     data-type="Sân 7 người">
+                <div class="field-image image-two">
+                    <span>SÂN 7 NGƯỜI</span>
+                    <strong>⚽</strong>
+                </div>
+                <div class="field-info">
+                    <h3>Sân bóng Thành Công</h3>
+                    <p>📍 Khu vực Bình Thạnh</p>
+                    <p>🕒 06:00 – 23:00</p>
+                    <div class="field-bottom">
+                        <strong>500.000đ<span>/giờ</span></strong>
+                        <button type="button"
+                                onclick="showBooking('Sân bóng Thành Công')">
+                            Xem sân
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="field-card"
+                     data-location="go vap"
+                     data-type="Sân 5 người">
+                <div class="field-image image-three">
+                    <span>SÂN 5 NGƯỜI</span>
+                    <strong>⚽</strong>
+                </div>
+                <div class="field-info">
+                    <h3>Sân bóng Hoàng Gia</h3>
+                    <p>📍 Khu vực Gò Vấp</p>
+                    <p>🕒 07:00 – 22:00</p>
+                    <div class="field-bottom">
+                        <strong>250.000đ<span>/giờ</span></strong>
+                        <button type="button"
+                                onclick="showBooking('Sân bóng Hoàng Gia')">
+                            Xem sân
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <p class="demo-note">
+            * Dữ liệu sân bóng hiện là dữ liệu mẫu phục vụ thiết kế giao diện.
+        </p>
+    </section>
+
+    <section class="intro-section" id="gioi-thieu">
+        <h2>Đặt sân nhanh chóng, chơi bóng thỏa thích</h2>
+        <div class="benefits">
+            <div>
+                <span>🔎</span>
+                <h3>Dễ dàng tìm kiếm</h3>
+                <p>Tìm sân theo khu vực và loại sân phù hợp.</p>
+            </div>
+            <div>
+                <span>📅</span>
+                <h3>Chủ động thời gian</h3>
+                <p>Lựa chọn ngày đá theo kế hoạch của bạn.</p>
+            </div>
+            <div>
+                <span>⚽</span>
+                <h3>Kết nối đam mê</h3>
+                <p>Giúp người chơi tiếp cận sân bóng thuận tiện hơn.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer id="lien-he">
+    <a href="/" class="logo">⚽ SânBóng</a>
+    <p>Website quản lý và đặt sân bóng đá</p>
+    <p>Đồ án môn Java nâng cao</p>
+</footer>
+
+<script>
+    function searchFields() {
+        const location = document.getElementById("location")
+            .value.trim().toLowerCase();
+        const type = document.getElementById("field-type").value;
+        const date = document.getElementById("booking-date").value;
+        const cards = document.querySelectorAll(".field-card");
+        let count = 0;
+
+        cards.forEach(function(card) {
+            const cardLocation = card.dataset.location;
+            const cardType = card.dataset.type;
+
+            const matchesLocation =
+                !location || cardLocation.includes(location);
+            const matchesType = !type || cardType === type;
+
+            const matches = matchesLocation && matchesType;
+            card.style.display = matches ? "" : "none";
+
+            if (matches) count++;
+        });
+
+        const message = document.getElementById("search-message");
+
+        if (count === 0) {
+            message.textContent =
+                "Không tìm thấy sân phù hợp. Ông thử đổi khu vực hoặc loại sân nhé.";
+        } else {
+            message.textContent = "Tìm thấy " + count +
+                " sân bóng phù hợp." +
+                (date ? " Ngày đã chọn: " + date + "." : "");
+        }
+    }
+
+    function showBooking(fieldName) {
+        alert("Ông đã chọn " + fieldName +
+            ". Chức năng đặt sân sẽ được xây dựng ở bước tiếp theo!");
+    }
+</script>
+
+</body>
+</html>
